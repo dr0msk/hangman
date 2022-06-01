@@ -75,7 +75,7 @@ def main():
 
 
 def sort_list():
-    with open("deutsch.txt", 'r') as f:
+    with open("http://www.netzmafia.de/software/wordlists/deutsch.txt", 'r') as f:
         for line in f:
             if len(line) > 13:
                 word_dict[13].append(line.rstrip("\n"))
