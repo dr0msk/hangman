@@ -1,5 +1,6 @@
 import sys
 from random import randint
+from urllib.request import urlopen
 
 
 hang_dict = {
@@ -75,7 +76,7 @@ def main():
 
 
 def sort_list():
-    with open("http://www.netzmafia.de/software/wordlists/deutsch.txt", 'r') as f:
+    f = urlopen("http://www.netzmafia.de/software/wordlists/deutsch.txt")
         for line in f:
             if len(line) > 13:
                 word_dict[13].append(line.rstrip("\n"))
