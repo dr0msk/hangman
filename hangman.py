@@ -77,11 +77,11 @@ def main():
 
 def sort_list():
     f = urlopen("http://www.netzmafia.de/software/wordlists/deutsch.txt")
-        for line in f:
-            if len(line) > 13:
-                word_dict[13].append(line.rstrip("\n"))
-            else:
-                word_dict[len(line) - 1].append(line.rstrip("\n"))
+    for line in f:
+        if len(line) > 13:
+            word_dict[13].append(line.rstrip("\n"))
+        else:
+            word_dict[len(line) - 1].append(line.rstrip("\n"))
             
 
 def solution(x):
