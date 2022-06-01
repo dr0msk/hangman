@@ -1,8 +1,41 @@
-import helper
 import sys
 from random import randint
 
+
+hang_dict = {
+    0: ' \n \n \n \n ',
+    1: ' \n \n \n \n∆',
+    2: ' \n \n \n|\n∆',
+    3: ' \n \n|\n|\n∆',
+    4: ' \n|\n|\n|\n∆',
+    5: '____\n|\n|\n|\n∆',
+    6: '____\n|  @\n|\n|\n∆',
+    7: '____\n|  @\n| /\n|\n∆',
+    8: '____\n|  @\n| /0\n|\n∆',
+    9: '____\n|  @\n| /0\ \n|\n∆',
+    10: '____\n|  @\n| /0\ \n|  ∏  \n∆'
+}
+
+word_dict = {
+    1: [],
+    2: [],
+    3: [],
+    4: [],
+    5: [],
+    6: [],
+    7: [],
+    8: [],
+    9:  [],
+    10: [],
+    11: [],
+    12: [],
+    13: []
+}
+length = 0
+
+
 def main():
+    sort_list()
     counter = 0
     ltrs = ""
     wrd = word()
@@ -14,9 +47,9 @@ def main():
 
     while True:
         if counter == 10:
-            print(helper.hang_dict[counter])
+            print(hang_dict[counter])
             sys.exit(f'Verloren! Das gesuchte Wort war "{wrd}"')
-        print(helper.hang_dict[counter])
+        print(hang_dict[counter])
         print(solut, end=" ")
         if ltrs != "":
             print(f"bisherige Buchstaben: {ltrs}")
@@ -41,6 +74,15 @@ def main():
             print("Nur EIN Buchstabe bitte!")
 
 
+def sort_list():
+    with open("deutsch.txt", 'r') as f:
+        for line in f:
+            if len(line) > 13:
+                word_dict[13].append(line.rstrip("\n"))
+            else:
+                word_dict[len(line) - 1].append(line.rstrip("\n"))
+            
+
 def solution(x):
     sol = ""
     for i in range(len(x)):
@@ -49,9 +91,10 @@ def solution(x):
 
 def word():
     level = 7
-    index = randint(0, len(helper.word_dict[level]))
-    word = ((helper.word_dict[level])[index]).upper()
+    index = randint(0, len(word_dict[level]))
+    word = ((word_dict[level])[index]).upper()
     return word
+
 
 if __name__ == "__main__":
     main()
